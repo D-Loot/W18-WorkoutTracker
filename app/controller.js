@@ -8,19 +8,19 @@ export default {
 
     // See '../public/stats.js' line 4 and 19, then
     // See '../public/api.js' line 2, then
-    // See './router.js' line....
-
+    // See './router.js' line 9
   index() {
     const workouts = workoutController.aggregate([
     {
       $addFields: {
         totalDuration: { $sum: "$exercises.duration" }
-    }
+      }
     },]).toArray()
     return workouts;
   },
 
-
+  // See '../public/api.js' line 13, then
+  // See './router.js' line 20
   //  Create an asynchronous update method which includes an ID and the new exercise info
   async update(id, newExercise) {
     // Find the desired workout by finding through the ID
@@ -31,6 +31,8 @@ export default {
     return workoutController.replaceOne({_id:ObjectId(id)},updatedWorkout);
   },
 
+  // See '../public/api.js' line 26, then
+  // See './router.js' line 31
   create() {
     const date = new Date();
     return workoutController.insertOne(
@@ -38,6 +40,9 @@ export default {
     )
   },
 
+  // See '../public/api.js' line 38, then
+  // See '../public/stats.js' line 5 and 19, then
+  // See './router.js' line 40
   show(){
     const workouts = workoutController
     .aggregate([
