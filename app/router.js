@@ -25,13 +25,15 @@ router.put("/workouts/:id", async (req, res) => {
     }
   }
 );
+
+router.post("/workouts", async (_, res) => {
+  try {
+    const newWorkout = await workoutController.create();
     res.status(201).json(newWorkout);
-  } catch (error){
-    if(error.message.startsWith("Workout")){
-      res.status(400).send(error,message);
-    } else {
-      res.status(500).send(error.message);
+  } catch (error) {
+    res.status(400).json(error.message);
     }
+});
   }
 });
 

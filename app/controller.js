@@ -31,7 +31,12 @@ export default {
     return workoutController.replaceOne({_id:ObjectId(id)},updatedWorkout);
   },
 
-// const notesCollection = client.db("noteTaker").collection("notes");
+  create() {
+    const date = new Date();
+    return workoutController.insertOne(
+      {day:date, exercises:[]}
+    )
+  },
 
 // export default {
 //   index() {
