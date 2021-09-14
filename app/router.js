@@ -14,7 +14,7 @@ router.get("/workouts", async (_,res)=>{
 });
 
 router.put("/workouts/:id", async (req, res) => {
-  try {
+    try {
 
       // It is validated in the "update" section of the controller.js
         const updatedWorkout = await workoutController.update(req.params.id, req.body);
@@ -32,7 +32,7 @@ router.post("/workouts", async (_, res) => {
     res.status(201).json(newWorkout);
   } catch (error) {
     res.status(400).json(error.message);
-    }
+  }
 });
 
 router.get("/workouts/range",async(_,res)=>{
@@ -44,17 +44,12 @@ router.get("/workouts/range",async(_,res)=>{
   }
 });
 
-router.post("/workouts", async(req,res)=>{
+router.delete("/workouts/", async (req, res) => {
   try {
-    const validatedWorkout = workoutModel.createWorkout(req.body);
-    const newWorkout = await workoutController.add(validatedWorkout);
-    res.status(201).json(newWorkout);
-  } catch (error){
-    if(error.message.startsWith("Workout")){
-      res.status(400).send(error,message);
-    } else {
-      res.status(500).send(error.message);
-    }
+    await workoutController.deleteAll();
+    res.status(204).send();
+  } catch (error) {
+    res.status(404).json(error.message);
   }
 });
 
