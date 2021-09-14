@@ -1,6 +1,6 @@
 // Loads a reusable Mongo Client for the application
 import {MongoClient} from "mongodb";
-import config from ",/config.js";
+import config from "./config.js";
 
 const client = new MongoClient(config.db);
 
