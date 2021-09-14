@@ -1,27 +1,54 @@
 const validate = (state)=>{
   const ret = [];
-// TODO:
-  if(!state.value1){
-    ret.push("Value1 is required");
+  if(state.type==="cardio"){
+    if(!state.distance){
+      ret.push("Exercise distance is required");
+    }
+  } else if(state.type==="resistance") {
+    if(!state.sets){
+      ret.push("Exercise sets are required");
+    }
+    if(!state.reps){
+      ret.push("Exercise reps is required");
+    }
+    if(!state.weight){
+      ret.push("Exercise weight is required");
+    }
+  } else {
+    if (!state.type){
+      ret.push("Exercise type is required");
+    }
   }
-// TODO:
-  if (!state.value2){
-    ret.push("Value2 is required")
+
+  if (!state.name){
+    ret.push("Exercise name is required")
+  }
+  if (!state.duration){
+    ret.push("Exercise duration is required")
   }
   return ret;
 };
-const withFullName = (state) =>({
+
+const validateNum = (state)=>({
   ...state,
-  fullName: `${state.firstName} ${state.LastName}`
+  distance: Number(state.distance),
+  sets: Number(state.sets),
+  reps: Number(state.reps),
+  weight: Number(state.weight),
 });
 
-// TODO:
 export default {
-  createUser(newUser){
-    const errors = validate(newWorkout);
+  createExercise(workout, newExercise){
+    const errors = validate(newExercise);
     if (errors.length){
       throw new Error(`User error: ${errors.join(", ")}`);
     }
-    return {newWorkout, ...withFullName(newWorkout)};
+    return {
+      ...workout,
+      exercises:[
+        ...workout.exercises,
+        {...newExercise, ...validateNum(newExercise)},
+      ],
+    }
   }
-}
+};
