@@ -21,10 +21,15 @@ export default {
   },
 
 
+  //  Create an asynchronous update method which includes an ID and the new exercise info
+  async update(id, newExercise) {
+    // Find the desired workout by finding through the ID
+    const workoutById = await workoutController.findOne({_id:ObjectId(id)});
+    //
+    const updatedWorkout = workoutModel.createExercise(workoutById,newExercise);
 
-// Uses the db client from loader.js
-// import { ObjectId } from "mongodb";
-// import client from "./loader.js";
+    return workoutController.replaceOne({_id:ObjectId(id)},updatedWorkout);
+  },
 
 // const notesCollection = client.db("noteTaker").collection("notes");
 
