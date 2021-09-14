@@ -5,11 +5,13 @@ import apiRouter from "./router.js";
 
 const app = express();
 
-app.use.(morgan("dev"));
+app.use(morgan("dev"));
+
+app.use(express.static("public",{extensions:["html"]}));
 
 app.use(express.json());
 app.use("/api",apiRouter);
 
 app.listen(config.port,()=>{
-  console.log(`Server running at: http://localhost:${config.post}`);
+  console.log(`Server running at: http://localhost:${config.port}`);
 })

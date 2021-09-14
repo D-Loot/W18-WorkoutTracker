@@ -6,7 +6,7 @@ const client = new MongoClient(config.db);
 
 client
   .connect()
-  ,then(() =>{
+  .then(() =>{
     console.info("MongoDB Client is running");
   })
   .catch((err)=>{
