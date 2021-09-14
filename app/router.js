@@ -4,7 +4,6 @@ import workoutModel from "./model.js";
 
 const router = new Router();
 
-
 router.get("/workouts", async (_,res)=>{
   try {
     const workout = await workoutController.index();

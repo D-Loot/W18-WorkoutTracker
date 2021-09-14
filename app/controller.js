@@ -5,22 +5,20 @@ import workoutModel from "./model.js"
 const workoutController = client.db("workout_db").collection("workouts");
 
 export default {
-  async add(newWorkout){
-    // Find existing workout
-    const existingWorkout = await workoutController.findOne({workout: newWorkout.workout});
-    if (existingWorkout){
-    // If it exists, return an error
-      throw Error("Workout already esists");
+
+    // See '../public/stats.js' line 4 and 19, then
+    // See '../public/api.js' line 2, then
+    // See './router.js' line....
+
+  index() {
+    const workouts = workoutController.aggregate([
+    {
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" }
     }
-    // If it doesn't exist, create the workout
-    const date = new Date();
-    return workoutController.insertOne({
-      ...newWorkout,
-      workoutCreated: date,
-      lastUpdated:date,
-    }
-  }
-}
+    },]).toArray()
+    return workouts;
+  },
 
 
 
