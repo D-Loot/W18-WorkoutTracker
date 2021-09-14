@@ -1,5 +1,55 @@
 # Unit 18 Nosql Homework: Workout Tracker
 
+## Your Task
+
+The task for this project was to create the back end of an exercise app using mongoDB. The instructions said to provide authentication through Mongoose, but we were instructed in class that there is a way to validate information by only using mongoDB. When the home page loads, you are shown the stats for the latest day of workouts. If you are revisiting from earlier in the day, you will see the current day's stats. You are then able to create a new workout or to add exercises to the current workout. Once the data is input, you are able to go to the dashboard page and see charts containing the total weight and duration for the last 7 workouts.
+
+The acceptance criteria are as follows below.
+
+## Acceptance Criteria
+
+```md
+When the user loads the page, they should be given the option to create a new workout or continue with their last workout.
+
+The user should be able to:
+
+  * Add exercises to the most recent workout plan.
+
+  * Add new exercises to a new workout plan.
+
+  * View the combined weight of multiple exercises from the past seven workouts on the `stats` page.
+
+  * View the total duration of each workout from the past seven workouts on the `stats` page.
+```
+
+Heroku: https://dl-workout-tracker.herokuapp.com/
+GitHub: https://github.com/D-Loot/W18-WorkoutTracker
+
+## Screenshots:
+
+![SS1](./Assets/SS1.PNG)
+
+Here is the homepage. You are able to see existing workout stats, and an option to start a new workout or add a new exercise to the current workout.
+
+![SS2](./Assets/SS2.PNG)
+![SS3](./Assets/SS3.PNG)
+
+You are able to choose "resistance" or "cardio" exercise types, which each have there own unique inputs.
+
+![SS4](./Assets/SS4.PNG)
+
+The front page updates the workout stats.
+
+![SS5](./Assets/SS5.PNG)
+
+The dashboard shows the total weight and the total duration for the last 7 workouts.
+
+# Background
+
+## Your Task
+
+# Unit 18 Nosql Homework: Workout Tracker
+
 For this assignment, you'll create a workout tracker. You have already been provided with the front end code in the `Develop` folder. This assignment will require you to create Mongo database with a Mongoose schema and handle routes with Express.
 
 ## User Story
