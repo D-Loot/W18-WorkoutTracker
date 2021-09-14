@@ -38,27 +38,23 @@ export default {
     )
   },
 
-// export default {
-//   index() {
-//     return notesCollection.find({}).toArray();
-//   },
-//   create(newNote) {
-//     return notesCollection.insertOne(newNote);
-//   },
-//   show(id) {
-//     return notesCollection.findOne(ObjectId(id));
-//   },
-//   delete(id) {
-//     return notesCollection.deleteOne({ _id: ObjectId(id) });
-//   },
-//   deleteAll() {
-//     return notesCollection.deleteMany({});
-//   },
+  show(){
+    const workouts = workoutController
+    .aggregate([
+      // Order the elements from most recent IDs to oldest IDs
+      {$sort:{_id:-1}},
+      // Limit the output to the top 7 most recent entries
+      {$limit:7},
+      {
+        $addFields: {
+          totalDuration: { $sum: "$exercises.duration" },
+          totalWeight: { $sum: "$exercises.weight" }
+        }
+      },
+      // Sort the most recent IDs from oldest to newest
+      {$sort:{_id:1}},
+    ]).toArray();
+    return workouts;
 
-//   update(id, updatedNote) {
-//     return notesCollection.updateOne(
-//       { _id: ObjectId(id) },
-//       { $set: updatedNote }
-//     );
-//   },
-// };
+  }
+};

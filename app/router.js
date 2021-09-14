@@ -34,6 +34,13 @@ router.post("/workouts", async (_, res) => {
     res.status(400).json(error.message);
     }
 });
+
+router.get("/workouts/range",async(_,res)=>{
+  try {
+    const workouts = await workoutController.show();
+    res.json(workouts);
+  } catch (err){
+    res.status(500).json({message:err.message});
   }
 });
 
